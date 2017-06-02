@@ -9,13 +9,11 @@ class AwesomeComponent extends React.Component {
       listCount: 0,
       words: []
     };
-
-    this.onClick = this.onClick.bind(this);
   }
 
-  onClick () {
+  onClick = () => {
     let newListCount = this.state.listCount + 1;
-    let newWords = this.state.words.push('Hello World')
+    let newWords = [...this.state.words, 'Hello World!']
     this.setState({
       listCount: newListCount,
       words: newWords
@@ -28,7 +26,7 @@ class AwesomeComponent extends React.Component {
         <div><button onClick={this.onClick}>Click this!</button></div>
         List : <span>{this.state.listCount}</span>
         {this.state.words.map(function(w) {
-          return(<div>w</div>)
+          return(<div>{w}</div>)
         })}
       </div>
     );
