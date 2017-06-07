@@ -1,6 +1,5 @@
 import React from 'react';
 
-<<<<<<< HEAD
 class AwesomeComponent extends React.Component {
 
   constructor(props) {
