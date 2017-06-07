@@ -6,41 +6,33 @@ class AwesomeComponent extends React.Component {
     super(props);
     this.state =
     {
-      listCount: 0,
       words: []
     };
   }
 
   onClick = () => {
-    let newListCount = this.state.listCount + 1;
-    let newWords = [...this.state.words, this.state.word]
+    let newWords = [...this.state.words, this.word.value]
+    if (this.word.value !== undefined) {
+      this.word.value = ''
+    }
     this.setState({
-      listCount: newListCount,
-      words: newWords,
-      word: ''
+      words: newWords
     });
-  }
-
-  onTextChange = (e) => {
-      this.setState({word: e.target.value})
   }
 
   render() {
     return (
       <div>
         <div>
-          <form onSubmit={this.onClick}>
-              <input type='text'
-                  id='input'
-                  placeholder={'write text'}
-                  onChange={this.onTextChange}/>
-                <button
-                  onMouseDown={this.onClick}
-                  id='button'/>
-          </form>
+            <input
+                type='text'
+                ref={(word) => { this.word = word }}
+                placeholder={'write text'}
+            />
+          <button onClick={this.onClick}>Click me ;)</button>
 
         </div>
-        List : <span>{this.state.listCount}</span>
+        List : <span>{this.state.words.length}</span>
         {this.state.words.map(function(w) {
           return(<div>{w}</div>)
         })}
