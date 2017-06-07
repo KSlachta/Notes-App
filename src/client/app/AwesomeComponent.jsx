@@ -1,53 +1,45 @@
 import React from 'react';
 
-class AwesomeComponent extends React.Component {
+export default class AwesomeComponent extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state =
-    {
-      listCount: 0,
-      words: []
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            words: []
+        };
+    }
 
-  onClick = () => {
-    let newListCount = this.state.listCount + 1;
-    let newWords = [...this.state.words, this.state.word]
-    this.setState({
-      listCount: newListCount,
-      words: newWords,
-      word: ''
-    });
-  }
+    onClick = () => {
+        let newWords = [...this.state.words, this.word]
+        this.setState({
+            words: newWords,
+        });
+    }
 
-  onTextChange = (e) => {
-      this.setState({word: e.target.value})
-  }
+    render() {
+        return (
+            <div>
+                <div>
+                    <input
+                        type='text'
+                        ref={(word) => { this.word = word }}
+                        placeholder={'write text'}
+                    />
+                    <button onMouseDown={this.onClick}/>
+                </div>
 
-  render() {
-    return (
-      <div>
-        <div>
-          <form onSubmit={this.onClick}>
-              <input type='text'
-                  id='input'
-                  placeholder={'write text'}
-                  onChange={this.onTextChange}/>
-                <button
-                  onMouseDown={this.onClick}
-                  id='button'/>
-          </form>
+                <div>
+                    List : <span>{this.state.newWords.count}</span>
+                </div>
 
-        </div>
-        List : <span>{this.state.listCount}</span>
-        {this.state.words.map(function(w) {
-          return(<div>{w}</div>)
-        })}
-      </div>
-    );
-  }
-
+                {
+                    this.state.words.map((w) => {
+                        return(
+                            <div>{w}</div>
+                        )
+                    })
+                }
+            </div>
+        );
+    }
 }
-
-export default AwesomeComponent;
