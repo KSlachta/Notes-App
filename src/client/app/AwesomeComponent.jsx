@@ -1,44 +1,42 @@
 import React from 'react';
+import TodoItems from './TodoItems.jsx'
 
 export default class AwesomeComponent extends React.Component {
+
 
   constructor(props) {
     super(props);
     this.state =
     {
-      words: []
+      items: []
     };
   }
 
-  onClick = () => {
-    let newWords = [...this.state.words, this.word.value]
-    if (this.word.value !== undefined) {
-      this.word.value = ''
+  addItem = (e) => {
+    // let newItems = [...this.state.items, this.word.value]
+    // this.setState({
+    //   items: newItems
+    // });
+    if (this.item.value !== '' && this.item.value !== undefined) {
+      var itemArray = this.state.items;
+
+      itemArray.push(
+        {
+          text: this.item.value,
+          key: Date.now()
+        }
+      )
+
+      this.setState({
+        items: itemArray
+      })
+
+      this.item.value = ""
     }
-    this.setState({
-      words: newWords
-    });
+    e.preventDefault()
   }
 
   render() {
-    // var letterStyle = {
-    //     padding: 10,
-    //     margin: 10,
-    //     backgroundColor: "#ffde00",
-    //     color: "#333",
-    //     display: "flex",
-    //     fontFamily: "monospace",
-    //     fontSize: "32",
-    //     textAlign: "center",
-    //     flexDirection: "column",
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    // };
-    var body = {
-        padding: '50px',
-        backgroundColor: '#66CCFF',
-        fontFamily: 'sans-serif'
-    }
     var input = {
         padding: '10px',
         fontSize: '16px',
@@ -54,23 +52,23 @@ export default class AwesomeComponent extends React.Component {
     }
 
     return (
-      <div>
-        <div style={body}>
-          <input
-              type='text'
-              ref={(word) => { this.word = word }}
-              placeholder={'write text'}
-              style={input}
-          />
-        <button onClick={this.onClick} style={button}>
-              {'Click me ;)'}
-          </button>
-
+      <div style ={{paddingLeft: '50px'}}>
+        <div>
+          <form onSubmit={this.addItem}>
+            <input
+                ref={(item) => { this.item = item }}
+                placeholder={'write text'}
+                style={input}
+            />
+            <button
+              style={button}
+              type='submit'>
+                {'Click me ;)'}
+            </button>
+          </form>
         </div>
-        List : <span>{this.state.words.length}</span>
-        {this.state.words.map(function(w) {
-          return(<div>{w}</div>)
-        })}
+        Items: <span>{this.state.items.length}</span>
+        <TodoItems entries={this.state.items}/>
       </div>
     );
   }
