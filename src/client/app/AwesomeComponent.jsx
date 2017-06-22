@@ -21,15 +21,37 @@ export default class AwesomeComponent extends React.Component {
   }
 
   render() {
+    var body = {
+        padding: '50px',
+        backgroundColor: '#66CCFF',
+        fontFamily: 'sans-serif'
+    }
+    var input = {
+        padding: '10px',
+        fontSize: '16px',
+        border: '2px solid #FFF'
+    }
+    var button = {
+        padding: '10px',
+        fontSize: '16px',
+        margin: '10px',
+        backgroundColor: '#0066FF',
+        color: '#FFF',
+        border: '2px solid #0066FF'
+    }
+
     return (
       <div>
-        <div>
-            <input
-                type='text'
-                ref={(word) => { this.word = word }}
-                placeholder={'write text'}
-            />
-          <button onClick={this.onClick}>Click me ;)</button>
+        <div style={body}>
+          <input
+              type='text'
+              ref={(word) => { this.word = word }}
+              placeholder={'write text'}
+              style={input}
+          />
+        <button onClick={this.onClick} style={button}>
+              {'Click me ;)'}
+          </button>
 
         </div>
         List : <span>{this.state.words.length}</span>
