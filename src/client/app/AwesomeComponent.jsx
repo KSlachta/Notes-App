@@ -3,7 +3,6 @@ import TodoItems from './TodoItems.jsx'
 
 export default class AwesomeComponent extends React.Component {
 
-
   constructor(props) {
     super(props);
     this.state =
