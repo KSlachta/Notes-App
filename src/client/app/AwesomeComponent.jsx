@@ -1,7 +1,6 @@
 import React from 'react';
 
-<<<<<<< HEAD
-class AwesomeComponent extends React.Component {
+export default class AwesomeComponent extends React.Component {
 
   constructor(props) {
     super(props);
@@ -22,15 +21,50 @@ class AwesomeComponent extends React.Component {
   }
 
   render() {
+    // var letterStyle = {
+    //     padding: 10,
+    //     margin: 10,
+    //     backgroundColor: "#ffde00",
+    //     color: "#333",
+    //     display: "flex",
+    //     fontFamily: "monospace",
+    //     fontSize: "32",
+    //     textAlign: "center",
+    //     flexDirection: "column",
+    //     justifyContent: "center",
+    //     alignItems: "center",
+    // };
+    var body = {
+        padding: '50px',
+        backgroundColor: '#66CCFF',
+        fontFamily: 'sans-serif'
+    }
+    var input = {
+        padding: '10px',
+        fontSize: '16px',
+        border: '2px solid #FFF'
+    }
+    var button = {
+        padding: '10px',
+        fontSize: '16px',
+        margin: '10px',
+        backgroundColor: '#0066FF',
+        color: '#FFF',
+        border: '2px solid #0066FF'
+    }
+
     return (
       <div>
-        <div>
-            <input
-                type='text'
-                ref={(word) => { this.word = word }}
-                placeholder={'write text'}
-            />
-          <button onClick={this.onClick}>Click me ;)</button>
+        <div style={body}>
+          <input
+              type='text'
+              ref={(word) => { this.word = word }}
+              placeholder={'write text'}
+              style={input}
+          />
+        <button onClick={this.onClick} style={button}>
+              {'Click me ;)'}
+          </button>
 
         </div>
         List : <span>{this.state.words.length}</span>
@@ -40,49 +74,4 @@ class AwesomeComponent extends React.Component {
       </div>
     );
   }
-
-=======
-export default class AwesomeComponent extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            words: []
-        };
-    }
-
-    onClick = () => {
-        let newWords = [...this.state.words, this.word]
-        this.setState({
-            words: newWords,
-        });
-    }
-
-    render() {
-        return (
-            <div>
-                <div>
-                    <input
-                        type='text'
-                        ref={(word) => { this.word = word }}
-                        placeholder={'write text'}
-                    />
-                    <button onMouseDown={this.onClick}/>
-                </div>
-
-                <div>
-                    List : <span>{this.state.newWords.count}</span>
-                </div>
-
-                {
-                    this.state.words.map((w) => {
-                        return(
-                            <div>{w}</div>
-                        )
-                    })
-                }
-            </div>
-        );
-    }
->>>>>>> 53f0d9214c695d0ee3dce777113795e1d87487d4
 }

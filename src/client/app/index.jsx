@@ -1,17 +1,23 @@
 import React from 'react';
-import {render} from 'react-dom';
+import ReactDOM from 'react-dom';
 
 import AwesomeComponent from './AwesomeComponent.jsx';
 
 class App extends React.Component {
   render () {
+    var title = {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center'
+    }
+
     return (
       <div>
-        <p> My Todo List!</p>
+        <h1 style={title}> My Todo List!</h1>
         <AwesomeComponent />
       </div>
     )
   }
 }
 
-render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'));
