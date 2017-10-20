@@ -1,74 +1,59 @@
-import React from 'react';
+import React from 'react'
 import TodoItems from './TodoItems.jsx'
 
 export default class AwesomeComponent extends React.Component {
+  state = { items: [] }
 
-  constructor(props) {
-    super(props);
-    this.state =
-    {
-      items: []
-    };
-  }
-
-  addItem = (e) => {
-    // let newItems = [...this.state.items, this.word.value]
-    // this.setState({
-    //   items: newItems
-    // });
+  addItem = e => {
     if (this.item.value !== '' && this.item.value !== undefined) {
-      var itemArray = this.state.items;
-
-      itemArray.push(
-        {
-          text: this.item.value,
-          key: Date.now()
-        }
-      )
+      const newItems = [
+        ...this.state.items,
+        { text: this.item.value, key: Date.now() }
+      ]
 
       this.setState({
-        items: itemArray
+        items: newItems
       })
 
-      this.item.value = ""
+      this.item.value = ''
     }
     e.preventDefault()
   }
 
   render() {
     var input = {
-        padding: '10px',
-        fontSize: '16px',
-        border: '2px solid #FFF'
+      padding: '10px',
+      fontSize: '16px',
+      border: '2px solid #FFF'
     }
     var button = {
-        padding: '10px',
-        fontSize: '16px',
-        margin: '10px',
-        backgroundColor: '#0066FF',
-        color: '#FFF',
-        border: '2px solid #0066FF'
+      padding: '10px',
+      fontSize: '16px',
+      margin: '10px',
+      backgroundColor: '#0066FF',
+      color: '#FFF',
+      border: '2px solid #0066FF'
     }
 
     return (
-      <div style ={{paddingLeft: '50px'}}>
+      <div style={{ paddingLeft: '50px' }}>
         <div>
           <form onSubmit={this.addItem}>
             <input
-                ref={(item) => { this.item = item }}
-                placeholder={'write text'}
-                style={input}
+              ref={item => {
+                this.item = item
+              }}
+              placeholder="write text"
+              style={input}
             />
-            <button
-              style={button}
-              type='submit'>
-                {'Click me ;)'}
+            <button style={button} type="submit">
+              Click me ;)
             </button>
           </form>
         </div>
         Items: <span>{this.state.items.length}</span>
-        <TodoItems entries={this.state.items}/>
+        <TodoItems entries={this.state.items} />
       </div>
-    );
+    )
   }
 }
